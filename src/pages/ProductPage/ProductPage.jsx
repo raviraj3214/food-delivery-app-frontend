@@ -34,6 +34,7 @@ export default function ProductPage() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [cartItems, setCartItems] = useState([]);
+  const [restaurant, setRestaurant] = useState({});
   const {id} = useParams()
   const dispatch = useDispatch();
   
@@ -55,12 +56,14 @@ export default function ProductPage() {
         const response = await axios.get(`/fooditem/${id}`); 
         const data = response.data.data || [];
         const categories = response.data.categories || [];
+        
         const groupedProducts = categories.reduce((acc, category) => {
           acc[category] = data.filter(
             (item) => item.category.name === category
           );
           return acc;
         }, {});
+        setRestaurant(response.data.restaurant)
 
         setProductsByCategory(groupedProducts);
         setCategories(categories);
@@ -155,8 +158,8 @@ export default function ProductPage() {
       <div className={styles.heroModal}>
         <img src={bg} alt="background" className={styles.bg} />
         <div className={styles.textContent}>
-          <p>I'm lovin' it!</p>
-          <h1>McDonald's East London</h1>
+        
+          <h1>{restaurant?.name}</h1>
           <div className={styles.infoButtons}>
             <div className={styles.heroButton}>Minimum Order: 12 GBP</div>
             <div className={styles.heroButton}>Delivery in 20-25 Minutes</div>
@@ -172,7 +175,7 @@ export default function ProductPage() {
       </div>
 
       <div className={styles.london}>
-        <h1>All Offers from McDonald’s East London</h1>
+        <h1>All Offers from {restaurant.name}</h1>
         <div className={styles.londonText}>
           <div className={styles.londonWrapper}>
             <IoIosSearch className={styles.searchIcon} />
@@ -303,12 +306,12 @@ export default function ProductPage() {
             <p>
               <span>Phone number</span>
             </p>
-            <p>+934443-43</p>
+            <p>{restaurant.phoneNumber}</p>
             <p>
               <span>Website</span>
             </p>
             <p>
-              <a href="http://mcdonalds.uk/">http://mcdonalds.uk/</a>
+              <a href={restaurant.site}>{restaurant.site}</a>
             </p>
           </div>
         </div>
@@ -342,7 +345,7 @@ export default function ProductPage() {
       </div>
 
       <div className={styles.map}>
-        <CustomMap />
+        <CustomMap address={restaurant.address} site={restaurant.site} name = {restaurant.name}  phoneNumber={restaurant.phoneNumber} />
       </div>
 
       <div className={styles.customerReviewModal}>
