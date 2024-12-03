@@ -80,8 +80,14 @@ export default function ProductPage() {
   const reviewImages = [reviews, reviews, reviews, reviews, reviews, reviews];
 
   const showNextReview = () => {
-    if (currentIndex < reviewImages.length - 3) {
+    if (currentIndex < reviewImages.length - 1) {
       setCurrentIndex(currentIndex + 1);
+    }
+  };
+  
+  const showPrevReview = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
@@ -104,22 +110,6 @@ export default function ProductPage() {
   // };
   
 
-  const showPrevReview = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-  const showNext = () => {
-    if (currentIndex < products.length - 3) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const showPrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
 
   if (loading) {
     return <p>Loading products...</p>;
@@ -353,22 +343,22 @@ export default function ProductPage() {
           <h1>Customer Reviews</h1>
           <div className={styles.leftRight}>
             <IoIosArrowDropleftCircle
-              onClick={showPrev}
+              onClick={showPrevReview}
               style={{ cursor: "pointer" }}
             />
             <IoIosArrowDroprightCircle
-              onClick={showNext}
+              onClick={showNextReview}
               style={{ cursor: "pointer" }}
             />
           </div>
         </div>
 
         <div className={styles.reviewModal}>
-          {reviewImages
-            .slice(currentIndex, currentIndex + 3)
-            .map((image, index) => (
-              <img key={index} src={image} alt={`Review ${index}`} />
-            ))}
+        {reviewImages
+      .slice(currentIndex, currentIndex + 3) // Display 3 reviews at a time
+      .map((image, index) => (
+        <img key={index} src={image} alt={`Review ${index}`} />
+      ))}
         </div>
         <img src={rating} alt="Rating" className={styles.ratingImage} />
       </div>
