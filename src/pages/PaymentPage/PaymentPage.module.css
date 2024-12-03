@@ -1,0 +1,266 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .paymentContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  gap: 20px;
+}
+
+.paymentOptions {
+  flex: 1;
+  max-width: 60%;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff8e5;
+}
+
+.optionActive {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.optionActive:hover {
+  background-color: #fff1cc;
+  border-color: #ffc107;
+}
+
+.optionActive {
+  background-color: #fff1cc;
+  border: 2px solid #ffc107;
+}
+
+.optionActive .icon {
+  font-size: 20px;
+}
+
+.optionActive .details p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.optionActive .details small {
+  color: #888;
+}
+
+.optionAddCard {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.paymentSummary {
+  flex: 0.4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.summaryDetails p {
+  margin: 0;
+  color: #666;
+}
+
+.summaryDetails h2 {
+  margin: 10px 0 20px;
+  font-size: 28px;
+  color: #000;
+}
+
+.proceedPayment {
+  background-color: #ff6600;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.proceedPayment:hover {
+  background-color: #e55a00;
+}
+
+@media (max-width: 768px) {
+  .paymentContainer {
+    flex-direction: column;
+  }
+
+  .paymentOptions {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .paymentSummary {
+    flex: 1;
+  }
+}
+
+.footer {
+  margin-top: 70px;
+} */
+
+.payText{
+  margin-top: 50px;
+}
+
+
+.paymentContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.paymentMethods {
+  width: 60%;
+}
+
+.paymentMethod {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #FFE8CE;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.paymentMethod:hover {
+  border-color: #ff7f00;
+}
+
+.paymentMethod input{
+  margin-left: 600px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: #ff7f00;
+  margin-right: 10px;
+}
+
+.details {
+  flex-grow: 1;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.balance {
+  font-size: 12px;
+  color: #999;
+}
+
+.arrow {
+  font-size: 16px;
+  color: #ff7f00;
+}
+
+.addCard {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.addCard:hover {
+  border-color: #ff7f00;
+}
+
+.addIcon {
+  font-size: 24px;
+  color: #ff7f00;
+  margin-right: 10px;
+}
+
+.paymentSummary {
+  width: 35%;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  height: 10%;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: lighter;
+  color: #83858A;
+}
+
+.amount span {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.proceedButton {
+  width: 100%;
+  background-color: #FC8A06;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.proceedButton:hover {
+  background-color: #e66b00;
+}
+
+.divider {
+  border-top: 2px solid #240707;
+  margin: 10px 0;
+}
+
+.cardInput {
+  flex-grow: 1;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.addCardButton {
+  padding: 8px 12px;
+  background-color: #ff7f00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addCardButton:hover {
+  background-color: #e66b00;
+}

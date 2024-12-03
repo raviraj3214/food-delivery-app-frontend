@@ -1,0 +1,173 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.yourAddress {
+  margin-top: 50px;
+}
+
+.addAddress {
+  margin-bottom: 30%;
+}
+
+.addButton {
+  width: 150px;
+  height: 100px;
+  border: 1px dashed #afafaf;
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addButton button {
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  color: #fc8a06;
+  font-size: 24px;
+  border: none;
+  background-color: #ffedd8;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.popupContent h3 {
+  font-size: 20px;
+  font-weight: lighter;
+  color: #3f3f3f;
+}
+
+.popupContent .loc {
+  font-size: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #c5c5c580;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 97%;
+  height: 60px;
+  border: 1px solid #c5c5c580;
+  border-radius: 5px;
+  padding: 10px;
+  resize: none;
+}
+
+.saveButton {
+  align-self: flex-end;
+  background: #fc8a06;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.cardAddress {
+  display: flex;
+  gap: 20px;
+}
+.saveAddress {
+  width: 200px;
+  height: 150px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+.saveAddress h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.saveAddress .defaultBadge {
+  background-color: #f5f5f5;
+  color: #ff9800;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+.saveAddress p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #000000;
+}
+.saveAddress .actions {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.saveAddress .actions .actionButton {
+  color: #ff9800;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+  border: none;
+  background-color: #fff;
+}
+.saveAddress .actions a:hover {
+  text-decoration: underline;
+}
+.saveAddress .actions .divider {
+  height: 14px;
+  width: 1px;
+  background-color: #e0e0e0;
+}
+
+.addAddress {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 30%;
+}
+
+.saveAddress.selected {
+  border: 2px solid #fc8a06;
+}
+

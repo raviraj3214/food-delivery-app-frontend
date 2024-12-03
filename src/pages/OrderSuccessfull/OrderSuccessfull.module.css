@@ -1,0 +1,59 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.success img{
+    margin-bottom: 30px;
+}
+
+.success p{
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.successCheck{
+    width: 100px;
+    height: auto;
+    margin-bottom: 30px;
+    color: #32B638;
+}
+
+.successPara{
+    color: #83858A;
+}
+
+.successOrder{
+    width: 200px;
+    height: auto;
+    border: 1px solid #00000080;
+    border-radius: 12px;
+    padding: 5px 70px 10px 70px;
+}
+
+.successOrder button{
+    width: 200px;
+    background-color: #fc8a06;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
+    color: #ffffff;
+
+}
+
+.footer {
+  margin-top: 50px;
+}

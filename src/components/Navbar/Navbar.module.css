@@ -1,0 +1,138 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  background: #fafafa;
+  border-radius: 0px 0px 12px 12px;
+  /* width: 1100px; */
+  padding: 0px 0px 0px 40px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  border: 1px solid #0000001a;
+}
+
+.promo {
+  color: #fc8a06;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.cartLocation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.a4 {
+  text-decoration: underline;
+}
+
+.change {
+  color: #fc8a06;
+  text-decoration: underline;
+  margin: 0px 70px 0px 20px;
+  cursor: pointer;
+}
+
+.cartConatiner {
+  display: flex;
+  align-items: center;
+  background-color: #028643;
+  padding: 10px;
+  color: white;
+  border-radius: 0px 0px 5px 5px;
+  width: 200px;
+  height: 30px;
+}
+
+.cart {
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.cartText {
+  position: relative;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.cartText::after {
+  content: "";
+  display: block;
+  width: 0.5px;
+  height: 50px;
+  background-color: white;
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow {
+  margin-left: auto;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.navbar .menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.navbar .menu a {
+  text-decoration: none;
+  color: #000000;
+  margin: 0 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.navbar .menu a:hover {
+  background-color: #ff7f00;
+  color: #ffffff;
+  padding: 10px 35px;
+  border-radius: 20px;
+}
+.navbar .loginSignup {
+  background-color: #03081f;
+  color: #ffffff;
+  padding: 10px 35px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.contact {
+  color: #fc8a06;
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  
+  .container{
+    display: none;
+  }
+
+  .navbar{
+    display: none;
+  }
+}

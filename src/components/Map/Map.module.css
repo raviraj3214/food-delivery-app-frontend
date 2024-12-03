@@ -1,0 +1,31 @@
+.custom-popup {
+    background-color: #03081f;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .custom-popup h2 {
+    font-size: 1.5em;
+    margin: 0 0 5px;
+  }
+  
+  .custom-popup p {
+    margin: 5px 0;
+    line-height: 1.4;
+  }
+  
+  .custom-popup a {
+    color: #ffd700;
+    text-decoration: underline;
+  }
+  
+  .custom-popup a:hover {
+    text-decoration: none;
+  }
+  
+
+
+  
