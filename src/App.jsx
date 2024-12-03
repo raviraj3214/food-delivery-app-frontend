@@ -16,7 +16,9 @@ import OrderSucessull from "./pages/OrderSuccessfull/OrderSucessull";
 import store from '../src/redux/store';
 import { Provider } from "react-redux";
 
-axios.defaults.baseURL = "http://localhost:8000/api/v1";
+// axios.defaults.baseURL = "http://localhost:8000/api/v1";
+axios.defaults.baseURL = "https://food-delivery-app-backend-zsia.onrender.com/api/v1";
+
 axios.defaults.withCredentials = true;
 
 function App() {
