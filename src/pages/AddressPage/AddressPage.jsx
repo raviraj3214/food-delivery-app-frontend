@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import styles from "./AddressPage.module.css";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -17,22 +18,24 @@ export default function AddressPage() {
     state: "",
     city: "",
     pincode: "",
+    fulladdress: "",
     phone: "",
-    fullAddress: "",
-  })
-  const navigate = useNavigate()
+  });
+  const navigate = useNavigate();
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
 
-  const handleGoBack = () => {
-    navigate(-1);  // Navigate to the previous page
-  }
-
+  // Fetch addresses on component mount
   useEffect(() => {
-    const savedAddresses = JSON.parse(localStorage.getItem("addresses")) || [];
-    setAddresses(savedAddresses);
+    fetchAddresses();
   }, []);
 
-  const saveToLocalStorage = (updatedAddresses) => {
-    localStorage.setItem("addresses", JSON.stringify(updatedAddresses));
+  const fetchAddresses = async () => {
+    try {
+      const response = await axios.get(`/user/addresses`);
+      setAddresses(response.data); // Assuming backend sends user addresses
+    } catch (error) {
+      console.error("Failed to fetch addresses:", error);
+    }
   };
 
   const togglePopup = () => {
@@ -44,25 +47,35 @@ export default function AddressPage() {
     setNewAddress({ ...newAddress, [name]: value });
   };
 
-  const saveAddress = () => {
-    let updatedAddresses;
-    if (editingIndex !== null) {
-      updatedAddresses = [...addresses];
-      updatedAddresses[editingIndex] = newAddress;
-    } else {
-      updatedAddresses = [...addresses, newAddress];
+  const saveAddress = async () => {
+    try {
+      if (editingIndex !== null) {
+        // Update address
+        const updatedAddress = { ...newAddress };
+        await axios.put(
+          `/user/address/${addresses[editingIndex]._id}`,
+          updatedAddress
+        );
+        fetchAddresses(); // Refresh the list
+      } else {
+        // Add new address
+        await axios.post(`/user/address`, newAddress);
+        fetchAddresses();
+      }
+
+      // Reset form and close popup
+      setNewAddress({
+        state: "",
+        city: "",
+        pincode: "",
+        fulladdress: "",
+        phone: "",
+      });
+      setEditingIndex(null);
+      setIsPopupOpen(false);
+    } catch (error) {
+      console.error("Failed to save address:", error);
     }
-    setAddresses(updatedAddresses);
-    saveToLocalStorage(updatedAddresses);
-    setEditingIndex(null);
-    setNewAddress({
-      state: "",
-      city: "",
-      pincode: "",
-      phone: "",
-      fullAddress: "",
-    });
-    setIsPopupOpen(false);
   };
 
   const handleEdit = (index) => {
@@ -71,29 +84,40 @@ export default function AddressPage() {
     setIsPopupOpen(true);
   };
 
-  const handleRemove = (index) => {
-    const updatedAddresses = addresses.filter((_, i) => i !== index);
-    setAddresses(updatedAddresses);
-    saveToLocalStorage(updatedAddresses);
+  const handleRemove = async (index) => {
+    try {
+      const addressId = addresses[index]._id;
+      await axios.delete(`/user/address/${addressId}`);
+      fetchAddresses(); 
+    } catch (error) {
+      console.error("Failed to delete address:", error);
+    }
   };
 
-  const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
+  const handleSetAsDefault = async (index) => {
+    try {
+      const addressId = addresses[index]._id;
+      await axios.patch(`/user/addresses/${addressId}/default`);
+      fetchAddresses(); // Refresh the list to reflect changes
+      setSelectedAddressIndex(index);
+      setSelectedAddress(addresses[index]);
+    } catch (error) {
+      console.error("Failed to set default address:", error);
+    }
+  };
 
-  const handleSetAsDefault = (index) => {
-    setSelectedAddressIndex(index);
-    setSelectedAddress(addresses[index]);
+  const handleGoBack = () => {
+    navigate(-1); // Navigate to the previous page
   };
 
   return (
     <div>
       <Navbar />
-
       <div className={styles.yourAddress}>
         <h1>
           <FaArrowLeft onClick={handleGoBack} /> Your Address
         </h1>
       </div>
-
       <div className={styles.addAddress}>
         <div className={styles.addButton} onClick={togglePopup}>
           <button>+</button>
@@ -101,9 +125,9 @@ export default function AddressPage() {
         </div>
 
         <div className={styles.cardAddress}>
-          {addresses.map((address, index) => (
+          {addresses?.map((address, index) => (
             <div
-              key={index}
+              key={address._id}
               className={`${styles.saveAddress} ${
                 selectedAddressIndex === index ? styles.selected : ""
               }`}
@@ -111,19 +135,13 @@ export default function AddressPage() {
               <h3>
                 {user?.name || ""}
                 {index === selectedAddressIndex && (
-                  <span
-                    className={styles.defaultBadge}
-                    onClick={() => handleSetAsDefault(index)}
-                  >
-                    Default
-                  </span>
+                  <span className={styles.defaultBadge}>Default</span>
                 )}
               </h3>
-
               <p>
-                {address.fullAddress}
+                {address.fulladdress.substr(0,18)}
                 <br />
-                {address.city}, {address.pincode}, India
+                {address.city}, {address.pincode}, {address.state}
               </p>
               <p>{address.phone}</p>
               <div className={styles.actions}>
@@ -141,6 +159,14 @@ export default function AddressPage() {
                   Remove
                 </button>
               </div>
+              {selectedAddressIndex !== index && (
+                <button
+                  className={styles.setDefaultButton}
+                  onClick={() => handleSetAsDefault(index)}
+                >
+                  Set as Default
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -151,14 +177,14 @@ export default function AddressPage() {
           <div className={styles.popupContent}>
             <h3>
               <HiOutlineLocationMarker className={styles.loc} />
-              Add Address
+              {editingIndex !== null ? "Edit Address" : "Add Address"}
             </h3>
             <div className={styles.row}>
               <input
                 type="text"
-                name="state"
-                placeholder="State"
-                value={newAddress.state}
+                name="phone"
+                placeholder="Phone"
+                value={newAddress.phone}
                 onChange={handleChange}
               />
               <input
@@ -177,16 +203,16 @@ export default function AddressPage() {
               />
               <input
                 type="text"
-                name="phone"
-                placeholder="Phone Number"
-                value={newAddress.phone}
+                name="state"
+                placeholder="State"
+                value={newAddress.state}
                 onChange={handleChange}
               />
             </div>
             <textarea
-              name="fullAddress"
+              name="fulladdress"
               placeholder="Enter full address"
-              value={newAddress.fullAddress}
+              value={newAddress.fulladdress}
               onChange={handleChange}
             ></textarea>
             <button className={styles.saveButton} onClick={saveAddress}>

@@ -4,6 +4,7 @@ import checkIcon from "../../assets/checkIcon.png";
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
+import { useDispatch, useSelector } from "react-redux";
 
 export default function OrderSucessull() {
 
@@ -12,6 +13,8 @@ export default function OrderSucessull() {
   const handleBackToHome = () => {
     navigate('/homepage'); // Navigate to the homepage (assuming '/' is the homepage route)
   };
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   return (
     <div>
@@ -22,9 +25,9 @@ export default function OrderSucessull() {
         <h1>Order Placed Successfully</h1>
         <p className={styles.successPara}>Your order is confirmed and on its way. Get set to <br/> savor your chosen delights!</p>
         <div className={styles.successOrder}>
-            <p>Royal Cheese Burger</p>
-            <p>Potato Veggies</p>
-            <p>Coke Coca Cola</p>
+        {cartItems.map((item, index) => (
+            <p key={index}>{item.name}</p> // Dynamically render each item name
+          ))}
             <button onClick={handleBackToHome}>Back to Home</button>
         </div>
       </div>
