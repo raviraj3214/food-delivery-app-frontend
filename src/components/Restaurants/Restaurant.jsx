@@ -52,7 +52,7 @@ export default function Restaurant() {
                     className={styles.cardImage}
                     />
                 </div>
-              <p className={styles.cardText}>{item.name}</p>
+              <p className={styles.cardText}>{item.name.substr(0,15)}</p>
             </div>
           </SwiperSlide>
         ))}

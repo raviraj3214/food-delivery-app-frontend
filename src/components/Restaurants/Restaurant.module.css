@@ -31,6 +31,7 @@
 .cardImageContainer {
   position: relative;
   height: 180px;
+  overflow: hidden;
 }
 
 .cardImage {
